@@ -18,7 +18,7 @@ const PORTFOLIO_DATA = {
 
   // --- LOCAL FILE PATHS ---
   // Ensure these files are placed inside your project's "public" folder
-  profileImage: "/me.jpg",
+  profileImage: "/me.JPG",
   resumePath: "/resume.pdf",
 
   about: "Motivated B.Tech Computer Science student with practical experience in Machine Learning and Deep Learning. Currently a Research Trainee at DRDO (CABS), developing speech processing systems for tactical communications using the NVIDIA NeMo framework and models like MarbleNet and Titanet-L. Proficient in Python, TensorFlow, and PyTorch, with a track record of building predictive models and conducting comparative neural network studies to optimize model accuracy.",
