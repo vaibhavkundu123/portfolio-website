@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Menu, X, Github, Linkedin, Mail, Phone, MapPin, 
-  ChevronRight, Code, Terminal, Database, Cpu, 
+import {
+  Menu, X, Github, Linkedin, Mail, Phone, MapPin,
+  ChevronRight, Code, Terminal, Database, Cpu,
   BrainCircuit, Smartphone, Globe, Award, Briefcase, GraduationCap, Download, ChevronDown,
   Bot, Sparkles, Send, Loader2, User, Check
 } from 'lucide-react';
 
 // --- DATA ---
-// You can edit your personal details here
 const PORTFOLIO_DATA = {
   name: "Vaibhav Kundu",
   role: "Machine Learning & Software Developer",
@@ -16,8 +15,12 @@ const PORTFOLIO_DATA = {
   phone: "+91-9836026975",
   linkedin: "https://linkedin.com/in/vaibhav-kundu-b074a0240",
   github: "https://github.com/vaibhavkundu123",
-  // REPLACE with your actual headshot image link
-  profileImage: "photo.jpg",
+
+  // --- LOCAL FILE PATHS ---
+  // Ensure these files are placed inside your project's "public" folder
+  profileImage: "/me.jpg",
+  resumePath: "/resume.pdf",
+
   about: "Motivated B.Tech Computer Science student with practical experience in Machine Learning and Deep Learning. Currently a Research Trainee at DRDO (CABS), developing speech processing systems for tactical communications using the NVIDIA NeMo framework and models like MarbleNet and Titanet-L. Proficient in Python, TensorFlow, and PyTorch, with a track record of building predictive models and conducting comparative neural network studies to optimize model accuracy.",
   skills: [
     { category: "Machine Learning & AI", icon: <BrainCircuit size={20} />, items: ["NLP", "TensorFlow", "PyTorch", "Scikit-Learn", "NumPy", "Pandas", "Matplotlib", "OpenCV"] },
@@ -109,16 +112,16 @@ const PORTFOLIO_CONTEXT = JSON.stringify({
 });
 
 const callGemini = async (prompt, systemInstruction) => {
-  const apiKey = "AIzaSyCcaVzryEL5pb4UbzoeFA2bLJ0qihQaBnc"; // The API key is provided by the environment
+  const apiKey = "AIzaSyCcaVzryEL5pb4UbzoeFA2bLJ0qihQaBnc";
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-  
+
   const payload = {
     contents: [{ parts: [{ text: prompt }] }],
     systemInstruction: { parts: [{ text: systemInstruction }] }
   };
 
   const delays = [1000, 2000, 4000, 8000, 16000];
-  
+
   for (let i = 0; i < delays.length + 1; i++) {
     try {
       const response = await fetch(url, {
@@ -216,7 +219,7 @@ const Hero = () => {
   const [imageError, setImageError] = useState(false);
   const [copied, setCopied] = useState(false);
   const typingSpeed = 100;
-  
+
   const roles = ["Machine Learning Enthusiast", "Research Trainee @ DRDO", "Android Developer", "Computer Science Student"];
 
   useEffect(() => {
@@ -245,7 +248,7 @@ const Hero = () => {
     <section id="home" className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 sm:px-6 lg:px-8 bg-slate-950 relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-30" style={{ backgroundImage: 'radial-gradient(circle at center, #06b6d4 2px, transparent 2px)', backgroundSize: '32px 32px' }}></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/80 to-slate-950 z-0"></div>
-      
+
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
         <div className="text-center lg:text-left space-y-8">
           <div className="space-y-4">
@@ -260,7 +263,7 @@ const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <button onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })} className="px-8 py-3 w-full sm:w-auto rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/25">Get In Touch</button>
-            <button onClick={() => window.open('Resume.pdf', '_blank')} className="px-8 py-3 w-full sm:w-auto rounded-full border border-cyan-500 text-cyan-400 font-medium hover:bg-cyan-500/10 transition-all flex items-center justify-center gap-2">
+            <button onClick={() => window.open(PORTFOLIO_DATA.resumePath, '_blank')} className="px-8 py-3 w-full sm:w-auto rounded-full border border-cyan-500 text-cyan-400 font-medium hover:bg-cyan-500/10 transition-all flex items-center justify-center gap-2">
               <Download size={18} /> Download Resume
             </button>
             <div className="flex items-center gap-4">
@@ -283,7 +286,12 @@ const Hero = () => {
             <div className="absolute inset-4 border-2 border-slate-800 rounded-full border-dashed animate-[spin_10s_linear_infinite]"></div>
             <div className="absolute inset-8 bg-slate-900 rounded-full flex items-center justify-center overflow-hidden border border-slate-700 shadow-2xl group">
               {!imageError ? (
-                <img src={PORTFOLIO_DATA.profileImage} alt="" onError={() => setImageError(true)} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <img
+                  src={PORTFOLIO_DATA.profileImage}
+                  alt=""
+                  onError={() => setImageError(true)}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               ) : (
                 <div className="flex flex-col items-center justify-center text-slate-600 gap-2">
                   <User size={80} strokeWidth={1} />
@@ -300,6 +308,10 @@ const Hero = () => {
     </section>
   );
 };
+
+// ... (Rest of components: About, Skills, Experience, Education, Contact, ChatAssistant, App remain same)
+// Truncating for brevity - ensure they are in your local file.
+// ...
 
 const SectionHeading = ({ title, subtitle }) => (
   <div className="mb-12">
@@ -415,7 +427,7 @@ const Contact = () => {
   const [emailCopied, setEmailCopied] = useState(false);
 
   // REPLACE THIS WITH YOUR FORMSPREE ID FROM https://formspree.io/
-  const FORMSPREE_ID = "mwvnrpog"; 
+  const FORMSPREE_ID = "mwvnrpog";
 
   const handleDraftPitch = async () => {
     if (!jdText.trim()) return;
@@ -484,8 +496,8 @@ const Contact = () => {
         <div className="max-w-3xl mx-auto bg-slate-950 border border-slate-800 rounded-2xl p-8">
           <form className="space-y-6" onSubmit={handleFormSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <input required type="text" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:border-cyan-500 outline-none transition-colors" placeholder="Your Name" />
-              <input required type="email" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} className="bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:border-cyan-500 outline-none transition-colors" placeholder="Your Email" />
+              <input required type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:border-cyan-500 outline-none transition-colors" placeholder="Your Name" />
+              <input required type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:border-cyan-500 outline-none transition-colors" placeholder="Your Email" />
             </div>
             <div className="bg-slate-900/50 border border-cyan-500/20 rounded-lg p-4">
               <button type="button" onClick={() => setShowJdInput(!showJdInput)} className="flex items-center gap-2 text-cyan-400 text-sm font-medium"><Sparkles size={16} /> recruiter? Auto-draft a pitch from JD</button>
