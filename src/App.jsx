@@ -3,7 +3,7 @@ import {
   Menu, X, Github, Linkedin, Mail, Phone, MapPin,
   ChevronRight, Code, Terminal, Database, Cpu,
   BrainCircuit, Smartphone, Globe, Award, Briefcase, GraduationCap, Download, ChevronDown,
-  Bot, Sparkles, Send, Loader2, User, Check
+  Bot, Sparkles, Send, Loader2, User, Check, Trophy, FileText, Star
 } from 'lucide-react';
 
 // --- DATA ---
@@ -79,6 +79,24 @@ const PORTFOLIO_DATA = {
       ]
     }
   ],
+  achievements: [
+    {
+      title: "Best Paper Award – IEEE SPACE 2026",
+      organization: "IEEE Aerospace & Electronic Systems Society (AESS)",
+      conference: "3rd IEEE International Conference on Space, Aerospace & Defence (SPACE 2026)",
+      track: "Assembly, Integration & Testing / Checkout Track",
+      location: "Bengaluru, India",
+      date: "Jul 2026",
+      role: "Co-Author",
+      paperTitle: "AI-Based Voice Deception System for Aerospace and Defense",
+      collaboration: "DRDO (Centre for Airborne Systems)",
+      highlights: [
+        "Awarded Best Paper in the Assembly, Integration & Testing / Checkout track at the 3rd IEEE International Conference on Space, Aerospace & Defence (SPACE 2026).",
+        "Co-authored research paper: “AI-Based Voice Deception System for Aerospace and Defense” in collaboration with DRDO (Centre for Airborne Systems)."
+      ],
+      badge: "IEEE Best Paper"
+    }
+  ],
   education: [
     {
       degree: "B. Tech in Computer Science & Engineering",
@@ -152,7 +170,7 @@ const copyToClipboard = (text) => {
 
 const Navbar = ({ activeSection }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const navLinks = ['Home', 'About', 'Skills', 'Experience', 'Education', 'Contact'];
+  const navLinks = ['Home', 'About', 'Skills', 'Experience', 'Achievements', 'Education', 'Contact'];
 
   const scrollToSection = (id) => {
     setIsOpen(false);
@@ -220,7 +238,13 @@ const Hero = () => {
   const [copied, setCopied] = useState(false);
   const typingSpeed = 100;
 
-  const roles = ["Machine Learning Enthusiast", "Research Trainee @ DRDO", "Android Developer", "Computer Science Student"];
+  const roles = [
+    "Machine Learning Enthusiast",
+    "Research Trainee @ DRDO",
+    "IEEE Best Paper Awardee",
+    "Android Developer",
+    "Computer Science Student"
+  ];
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -396,19 +420,97 @@ const Experience = () => (
   </section>
 );
 
+const Achievements = () => (
+  <section id="achievements" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-950 relative overflow-hidden">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div className="max-w-7xl mx-auto relative z-10">
+      <SectionHeading title="Achievements & Honors" subtitle="Recognitions, awards, and research milestones" />
+      <div className="grid grid-cols-1 gap-8">
+        {PORTFOLIO_DATA.achievements.map((item, idx) => (
+          <div
+            key={idx}
+            className="relative bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border border-amber-500/30 rounded-2xl p-6 sm:p-8 hover:border-amber-400/60 transition-all duration-300 shadow-xl shadow-amber-500/5 group"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-xl group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-amber-500/10">
+                  <Trophy size={28} />
+                </div>
+                <div>
+                  <span className="px-3 py-0.5 bg-amber-500/10 text-amber-400 text-xs font-semibold uppercase tracking-wider rounded-full border border-amber-500/30 inline-block mb-1">
+                    {item.badge}
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                    {item.title}
+                  </h3>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium text-slate-400 bg-slate-800/80 px-3.5 py-1.5 rounded-full border border-slate-700">
+                <MapPin size={15} className="text-cyan-400" />
+                <span>{item.location}</span>
+                <span className="text-slate-600">•</span>
+                <span className="text-cyan-400">{item.date}</span>
+              </div>
+            </div>
+
+            <div className="mb-6 p-4 rounded-xl bg-slate-950/70 border border-slate-800/80">
+              <p className="text-slate-300 font-medium text-sm sm:text-base mb-1">
+                <span className="text-amber-400 font-semibold">{item.organization}</span>
+                <span className="text-slate-500 mx-2">|</span>
+                <span className="text-slate-300">{item.role}</span>
+              </p>
+              <p className="text-xs sm:text-sm text-slate-400">
+                Track: <span className="text-slate-200 font-medium">{item.track}</span>
+              </p>
+            </div>
+
+            <div className="mb-6 p-4 sm:p-5 rounded-xl bg-gradient-to-r from-cyan-950/40 via-slate-900 to-blue-950/40 border border-cyan-500/30">
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2">
+                <FileText size={15} /> Co-Authored Research Paper
+              </div>
+              <h4 className="text-base sm:text-lg font-bold text-white tracking-wide">
+                “{item.paperTitle}”
+              </h4>
+              <p className="text-xs sm:text-sm text-slate-400 mt-2 flex items-center gap-1.5">
+                <span className="inline-block w-2 h-2 rounded-full bg-cyan-400"></span>
+                In collaboration with <span className="text-cyan-300 font-medium">{item.collaboration}</span>
+              </p>
+            </div>
+
+            <ul className="space-y-3">
+              {item.highlights.map((highlight, hIdx) => (
+                <li key={hIdx} className="flex items-start gap-3 text-slate-300 text-sm sm:text-base">
+                  <Star size={16} className="text-amber-400 flex-shrink-0 mt-1" />
+                  <span className="leading-relaxed">{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const Education = () => (
-  <section id="education" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-950">
+  <section id="education" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
     <div className="max-w-7xl mx-auto">
       <SectionHeading title="Education" subtitle="My academic background" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {PORTFOLIO_DATA.education.map((edu, idx) => (
-          <div key={idx} className="bg-slate-900 border border-slate-800 rounded-xl p-8 hover:border-blue-500/30 transition-all relative overflow-hidden group">
+          <div key={idx} className="bg-slate-950 border border-slate-800 rounded-xl p-8 hover:border-blue-500/30 transition-all relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-all duration-500"><GraduationCap size={100} className="text-cyan-500" /></div>
             <div className="relative z-10">
               <span className="text-cyan-400 font-mono text-sm mb-2 block">{edu.period}</span>
               <h3 className="text-2xl font-bold text-white mb-2">{edu.degree}</h3>
               <h4 className="text-lg text-slate-300 mb-4">{edu.institution}</h4>
               <div className="flex items-center gap-2 mb-4"><Award size={18} className="text-yellow-500" /><span className="font-semibold text-slate-200">{edu.score}</span></div>
+              {edu.extras && (
+                <div className="pt-3 border-t border-slate-800 text-xs sm:text-sm text-slate-400">
+                  <span className="text-cyan-400 font-medium">Position of Responsibility: </span>
+                  {edu.extras}
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -553,7 +655,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'education', 'contact'];
+      const sections = ['home', 'about', 'skills', 'experience', 'achievements', 'education', 'contact'];
       for (const s of sections) {
         const el = document.getElementById(s);
         if (el && el.offsetTop <= window.scrollY + 100 && el.offsetTop + el.offsetHeight > window.scrollY + 100) {
@@ -572,6 +674,7 @@ export default function App() {
       <About />
       <Skills />
       <Experience />
+      <Achievements />
       <Education />
       <Contact />
       <ChatAssistant />
