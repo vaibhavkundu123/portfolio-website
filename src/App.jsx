@@ -79,7 +79,50 @@ const PORTFOLIO_DATA = {
       ]
     }
   ],
+  majorProjects: [
+    {
+      title: "AI-Based Voice Deception System",
+      type: "Research Project | DRDO (CABS)",
+      location: "Bengaluru, India",
+      period: "Aug 2025 – Feb 2026",
+      awardBadge: "🏆 Best Paper Award – IEEE SPACE 2026",
+      description: [
+        "Engineered a Speaker Identification, Diarization, and Voice Conversion system for aerospace and defense applications using the NVIDIA NeMo framework.",
+        "Co-authored the research paper “AI-Based Voice Deception System for Aerospace and Defense”, which won the Best Paper Award at IEEE SPACE 2026."
+      ],
+      tech: ["NVIDIA NeMo", "MarbleNet", "Titanet-L", "MSDD", "PyTorch", "Speech AI", "DRDO CABS"]
+    },
+    {
+      title: "Forensic DocStitch",
+      type: "Final Year Project",
+      location: "Kolkata, India",
+      period: "2026",
+      awardBadge: "🏆 Best Paper Award – ICDMIS 2026 (Springer)",
+      description: [
+        "Engineered a vision-language reconstruction system capable of stitching and restoring fragmented English documents for cyber forensic applications.",
+        "Co-authored a research paper detailing the methodology, which secured the Best Paper Award at the ICDMIS 2026 conference published by Springer."
+      ],
+      tech: ["Vision-Language Models", "Deep Learning", "Document Reconstruction", "Cyber Forensics", "OpenCV", "Python"]
+    }
+  ],
   achievements: [
+    {
+      title: "Best Paper Award – ICDMIS 2026",
+      organization: "Springer",
+      conference: "3rd International Conference on Data Mining and Information Security (ICDMIS 2026)",
+      track: "Track 7 (Eminent College of Management & Technology and SLIIT)",
+      location: "Kolkata, India",
+      date: "Oct 2026",
+      role: "Co-Author",
+      paperTitle: "Forensic DocStitch: Vision-Language Reconstruction of Fragmented English Documents for Cyber Forensics",
+      collaboration: "Springer / Eminent College of Management & Technology and SLIIT",
+      highlights: [
+        "Awarded Best Paper in Track 7 at the 3rd International Conference on Data Mining and Information Security (ICDMIS 2026) organized by Eminent College of Management and Technology and SLIIT.",
+        "Co-authored research paper: “Forensic DocStitch: Vision-Language Reconstruction of Fragmented English Documents for Cyber Forensics”, published by Springer.",
+        "Engineered a vision-language reconstruction system capable of stitching and restoring fragmented English documents for cyber forensic applications."
+      ],
+      badge: "Springer Best Paper"
+    },
     {
       title: "Best Paper Award – IEEE SPACE 2026",
       organization: "IEEE Aerospace & Electronic Systems Society (AESS)",
@@ -92,7 +135,8 @@ const PORTFOLIO_DATA = {
       collaboration: "DRDO (Centre for Airborne Systems)",
       highlights: [
         "Awarded Best Paper in the Assembly, Integration & Testing / Checkout track at the 3rd IEEE International Conference on Space, Aerospace & Defence (SPACE 2026).",
-        "Co-authored research paper: “AI-Based Voice Deception System for Aerospace and Defense” in collaboration with DRDO (Centre for Airborne Systems)."
+        "Co-authored research paper: “AI-Based Voice Deception System for Aerospace and Defense” in collaboration with DRDO (Centre for Airborne Systems).",
+        "Engineered a Speaker Identification, Diarization, and Voice Conversion system for aerospace and defense applications using the NVIDIA NeMo framework."
       ],
       badge: "IEEE Best Paper"
     }
@@ -103,8 +147,8 @@ const PORTFOLIO_DATA = {
       institution: "Netaji Subhas Engineering College",
       location: "Kolkata, India",
       period: "2022 - 2026",
-      score: "CGPA: 7.49 (avg.)",
-      extras: "Vice President, GNX (Official GNU/Linux group and open-source community of NSEC)"
+      score: "CGPA: 7.57",
+      extras: "Vice President, GNX (Apr 2025 – Dec 2025) • Previously PR Team Member (Apr 2024 – Apr 2025) — Official GNU/Linux and open-source community of NSEC"
     },
     {
       degree: "Class XII (CBSE)",
@@ -170,7 +214,7 @@ const copyToClipboard = (text) => {
 
 const Navbar = ({ activeSection }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const navLinks = ['Home', 'About', 'Skills', 'Experience', 'Achievements', 'Education', 'Contact'];
+  const navLinks = ['Home', 'About', 'Skills', 'Experience', 'Projects', 'Achievements', 'Education', 'Contact'];
 
   const scrollToSection = (id) => {
     setIsOpen(false);
@@ -241,8 +285,8 @@ const Hero = () => {
   const roles = [
     "Machine Learning Enthusiast",
     "Research Trainee @ DRDO",
-    "IEEE Best Paper Awardee",
-    "Android Developer",
+    "2x Best Paper Awardee (Springer & IEEE)",
+    "Speech AI & Deep Learning Engineer",
     "Computer Science Student"
   ];
 
@@ -283,7 +327,7 @@ const Hero = () => {
             </div>
           </div>
           <p className="text-slate-400 text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Computer Science student and AI researcher specializing in predictive models and deep learning. Currently building tactical speech processing systems at DRDO.
+            Computer Science student and AI researcher specializing in predictive models and deep learning. Currently building tactical speech processing systems at DRDO and 2x Best Paper Award winner (ICDMIS 2026 & IEEE SPACE 2026).
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <button onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })} className="px-8 py-3 w-full sm:w-auto rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium hover:from-cyan-400 hover:to-blue-500 transition-all shadow-lg shadow-cyan-500/25">Get In Touch</button>
@@ -362,7 +406,7 @@ const About = () => (
           <p className="text-slate-400 text-lg leading-relaxed">{PORTFOLIO_DATA.about}</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
             <div className="flex items-center gap-3 text-slate-300"><MapPin className="text-cyan-500" size={20} /><span>{PORTFOLIO_DATA.location}</span></div>
-            <div className="flex items-center gap-3 text-slate-300"><GraduationCap className="text-cyan-500" size={20} /><span>B.Tech CSE (2022-2026)</span></div>
+            <div className="flex items-center gap-3 text-slate-300"><GraduationCap className="text-cyan-500" size={20} /><span>B.Tech CSE (2022-2026) • CGPA 7.57</span></div>
           </div>
         </div>
       </div>
@@ -412,6 +456,51 @@ const Experience = () => (
                   <li key={dIdx} className="flex items-start gap-3 text-slate-400"><ChevronRight size={18} className="text-cyan-500 flex-shrink-0 mt-0.5" /><span>{desc}</span></li>
                 ))}
               </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const Projects = () => (
+  <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900">
+    <div className="max-w-7xl mx-auto">
+      <SectionHeading title="Major Projects" subtitle="Key engineering & research initiatives" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {PORTFOLIO_DATA.majorProjects.map((project, idx) => (
+          <div key={idx} className="bg-slate-950 border border-slate-800 rounded-2xl p-8 hover:border-cyan-500/50 transition-all flex flex-col justify-between group shadow-xl hover:shadow-cyan-500/5">
+            <div>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/30">
+                  {project.type}
+                </span>
+                <span className="text-xs text-slate-400 font-mono">
+                  {project.period}
+                </span>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                {project.title}
+              </h3>
+              <p className="text-xs text-amber-400 font-semibold mb-4 flex items-center gap-1.5">
+                <span>{project.awardBadge}</span>
+              </p>
+              <ul className="space-y-3 mb-6">
+                {project.description.map((desc, dIdx) => (
+                  <li key={dIdx} className="flex items-start gap-2.5 text-slate-300 text-sm leading-relaxed">
+                    <ChevronRight size={16} className="text-cyan-500 flex-shrink-0 mt-1" />
+                    <span>{desc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80">
+              {project.tech.map((t, tIdx) => (
+                <span key={tIdx} className="px-2.5 py-1 bg-slate-900 text-cyan-300 text-xs rounded-md border border-slate-800 font-mono">
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
         ))}
@@ -655,7 +744,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'achievements', 'education', 'contact'];
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'achievements', 'education', 'contact'];
       for (const s of sections) {
         const el = document.getElementById(s);
         if (el && el.offsetTop <= window.scrollY + 100 && el.offsetTop + el.offsetHeight > window.scrollY + 100) {
@@ -674,6 +763,7 @@ export default function App() {
       <About />
       <Skills />
       <Experience />
+      <Projects />
       <Achievements />
       <Education />
       <Contact />
